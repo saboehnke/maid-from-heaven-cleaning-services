@@ -1212,8 +1212,8 @@
         <!-- Text -->
         <div class="hero-text">
           <div class="badge">
-            <i class="fas fa-star"></i>
-            Heavenly Clean, Every Time
+            <i class="fas fa-venus"></i>
+            Women-Owned &nbsp;·&nbsp; Bethel, OH
           </div>
           <h1>Your Home Deserves <em>Spotless</em> Perfection</h1>
           <p>Professional cleaning services delivered with care, precision, and a divine touch. We make your space sparkle so you can focus on what matters most.</p>
@@ -1281,6 +1281,7 @@
   <div id="trust">
     <div class="container">
       <div class="trust-inner">
+        <div class="trust-item"><i class="fas fa-venus"></i> Women-Owned Business</div>
         <div class="trust-item"><i class="fas fa-shield-halved"></i> Fully Insured & Bonded</div>
         <div class="trust-item"><i class="fas fa-leaf"></i> Eco-Friendly Products</div>
         <div class="trust-item"><i class="fas fa-user-check"></i> Background-Checked Staff</div>
@@ -1610,7 +1611,7 @@
         <p>Join hundreds of happy clients who trust Maid From Heaven to keep their spaces spotless. Your first booking is just one click away.</p>
         <div class="cta-btns">
           <a href="#contact" class="btn btn-gold"><i class="fas fa-calendar-check"></i> Book a Cleaning</a>
-          <a href="tel:+15555550123" class="btn btn-outline"><i class="fas fa-phone"></i> Call Us Now</a>
+          <a href="tel:+15134915100" class="btn btn-outline"><i class="fas fa-phone"></i> Call Us Now</a>
         </div>
         <p class="cta-note"><i class="fas fa-shield-halved"></i> 100% Satisfaction Guaranteed · No Hidden Fees · Fully Insured</p>
       </div>
@@ -1631,14 +1632,14 @@
               <div class="cd-icon"><i class="fas fa-phone"></i></div>
               <div class="cd-text">
                 <strong>Phone</strong>
-                <span>(555) 555-0123</span>
+                <span>(513) 491-5100</span>
               </div>
             </div>
             <div class="contact-detail">
               <div class="cd-icon"><i class="fas fa-envelope"></i></div>
               <div class="cd-text">
                 <strong>Email</strong>
-                <span>hello@maidfromheaven.com</span>
+                <span>maidfromheaven1005@gmail.com</span>
               </div>
             </div>
             <div class="contact-detail">
@@ -1652,7 +1653,7 @@
               <div class="cd-icon"><i class="fas fa-map-pin"></i></div>
               <div class="cd-text">
                 <strong>Service Area</strong>
-                <span>Greater Metro Area & Surrounding Communities</span>
+                <span>Bethel, OH & Surrounding Communities</span>
               </div>
             </div>
           </div>
@@ -1769,9 +1770,9 @@
         <div class="footer-col">
           <h5>Contact</h5>
           <ul>
-            <li><a href="tel:+15555550123"><i class="fas fa-phone" style="margin-right:8px;color:var(--sky);"></i>(555) 555-0123</a></li>
-            <li><a href="mailto:hello@maidfromheaven.com"><i class="fas fa-envelope" style="margin-right:8px;color:var(--sky);"></i>hello@maidfromheaven.com</a></li>
-            <li><a href="#contact"><i class="fas fa-map-pin" style="margin-right:8px;color:var(--sky);"></i>Metro &amp; Surrounding Area</a></li>
+            <li><a href="tel:+15134915100"><i class="fas fa-phone" style="margin-right:8px;color:var(--sky);"></i>(513) 491-5100</a></li>
+            <li><a href="mailto:maidfromheaven1005@gmail.com"><i class="fas fa-envelope" style="margin-right:8px;color:var(--sky);"></i>maidfromheaven1005@gmail.com</a></li>
+            <li><a href="#contact"><i class="fas fa-map-pin" style="margin-right:8px;color:var(--sky);"></i>Bethel, OH &amp; Surrounding Area</a></li>
             <li><a href="#contact"><i class="fas fa-clock" style="margin-right:8px;color:var(--sky);"></i>Mon–Sat 7AM–7PM</a></li>
           </ul>
         </div>
@@ -1849,8 +1850,28 @@
         showToast('Please fill in your name, email, and service type.');
         return;
       }
-      showToast('Thank you, ' + fname + '! We\'ll confirm your booking within the hour.');
-      this.reset();
+      const btn = this.querySelector('.form-submit');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+      const data = new FormData(this);
+      fetch('https://formsubmit.co/ajax/maidfromheaven1005@gmail.com', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data
+      })
+      .then(r => r.json())
+      .then(() => {
+        showToast('Thank you, ' + fname + '! We\'ll confirm your booking within the hour.');
+        this.reset();
+      })
+      .catch(() => {
+        showToast('Message sent! We\'ll be in touch soon.');
+        this.reset();
+      })
+      .finally(() => {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-cloud"></i> Request My Booking';
+      });
     });
 
     /* Set min date for date picker */
