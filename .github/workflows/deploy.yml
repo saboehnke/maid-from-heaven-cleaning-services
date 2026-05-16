@@ -2,7 +2,7 @@ name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, test]
 
 jobs:
   deploy:
@@ -17,4 +17,4 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: 754774ba9f795da2b9fdcccb17cc3928
-        run: npx wrangler pages deploy . --project-name=maid-from-heaven-cleaning-services --branch=main
+        run: npx wrangler pages deploy . --project-name=maid-from-heaven-cleaning-services --branch=${{ github.ref_name }}
